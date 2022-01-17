@@ -1,6 +1,6 @@
 # Poke App
-Made using React, React Bootstrap(Component Library)
-Uses Poke API
+1. Made using React, React Bootstrap(Component Library)
+2. Uses Poke API
 
 
 ## Screenshot
