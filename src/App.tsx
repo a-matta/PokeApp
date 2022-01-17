@@ -13,7 +13,7 @@ const App = () => {
       );
 
       Promise.all(arrayOfPromises).then((data: any) => setPokemons(data));
-    }); // array of promise
+    });
   }, []);
 
   return (
@@ -24,7 +24,12 @@ const App = () => {
         </Container>
       </Navbar>
       <div>
-        <pre>{JSON.stringify(pokemons, null, 2)}</pre>
+        {pokemons.map((p: any) => (
+          <div>
+            <h1>{p.name}</h1>
+            <img src={p.sprites.back_default} alt={p.name} />
+          </div>
+        ))}
       </div>
     </>
   );
