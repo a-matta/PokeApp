@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/NavBar";
 import Container from "react-bootstrap/NavBar";
 import axios from "axios";
+import { Card, Row } from "react-bootstrap";
 
 const App = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -23,14 +24,26 @@ const App = () => {
           <Navbar.Brand href="#">Poke App</Navbar.Brand>
         </Container>
       </Navbar>
-      <div>
-        {pokemons.map((p: any) => (
-          <div>
-            <h1>{p.name}</h1>
-            <img src={p.sprites.back_default} alt={p.name} />
-          </div>
-        ))}
-      </div>
+      <Container>
+        <Row xs={1} md={6} className="g-4 justify-content-md-center">
+          {pokemons.map((p: any) => (
+            <Card
+              key={p.name}
+              className="m-5"
+              style={{ background: "#f8f9fa" }}
+            >
+              <Card.Img
+                variant="top"
+                src={p.sprites.back_default}
+                alt={`image of ${p.name}`}
+              />
+              <Card.Body>
+                <Card.Title>{p.name}</Card.Title>
+              </Card.Body>
+            </Card>
+          ))}
+        </Row>
+      </Container>
     </>
   );
 };
