@@ -7,9 +7,13 @@ const App = () => {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://pokeapi.co/api/v2/pokemon")
-      .then((resp) => setPokemons(resp.data.results));
+    axios.get("https://pokeapi.co/api/v2/pokemon").then((resp) => {
+      const arrayOfPromises = resp.data.results.map((p: { url: string }) =>
+        axios.get(p.url).then((r) => r.data)
+      );
+
+      Promise.all(arrayOfPromises).then((data: any) => setPokemons(data));
+    }); // array of promise
   }, []);
 
   return (
